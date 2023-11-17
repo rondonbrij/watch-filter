@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <title>Agum Filter Project</title>
+  </head>
+  <body>
+
+
+    <div class="container">
+      <div class="certificate">
+        <div class="leftMenu">
+          <input type="text" placeholder="Search..." class="search" id="searchInput" />
+          <h1>Categories</h1>
+          <div class="cats">
+            <span class="cat" data-category="All" onclick="filterProducts('All')">All</span>
+            <span class="cat" data-category="Dress" onclick="filterProducts('Dress')">Dress</span>
+            <span class="cat" data-category="Sport" onclick="filterProducts('Sport')">Sport</span>
+            <span class="cat" data-category="Luxury" onclick="filterProducts('Luxury')">Luxury</span>
+            <span class="cat" data-category="Casual" onclick="filterProducts('Casual')">Casual</span>
+          </div>
+          <h1>Maximum Price</h1>
+          <div class="price">
+            <input type="range" class="priceRange" />
+            <span class="priceValue"></span>
+          </div>
+        </div>
+        <div class="content">
+          <div class="products" id="productList"></div>
+        </div>
+      </div>
+      <script src="./code.js"></script>
+    </div>
+    
+  </body>
+</html>

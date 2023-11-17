@@ -1,0 +1,93 @@
+body {
+  margin: 0;
+    padding: 0;
+  font-family: "Open Sans", sans-serif;
+}
+.container {   
+  width: 80%;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.certificate {
+  display: flex;
+  background-color: white;
+  padding: 50px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.leftMenu {
+  flex: 1;
+}
+
+.search{
+  padding: 10px;
+  width: 300px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+h1{
+  font-size: 30px;
+  color: #555;
+  font-weight: 300;
+}
+
+
+.cats{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cat{
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 300;
+  padding: 5px;
+  display: inline-block;
+  /* padding: 10px 20px; */
+  /* margin: 10px; */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: #333;
+  text-decoration: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+.cat:hover{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.content {
+  flex: 4;
+}
+
+.products{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px;
+  
+}
+
+.product{
+  text-align: center;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+.product:hover{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+img{
+  width: 150px;
+  height: 250px;
+  object-fit: contain;
+}
+
+.name{
+  font-weight: 300;
+}
