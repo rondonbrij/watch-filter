@@ -19,7 +19,27 @@ const data = [
     img: "https://m.media-amazon.com/images/I/91WvnZ1g40L._AC_UY879_.jpg",
     price: 40,
     cat: "Sport",
-  },
+  },  
+
+  {
+    id: 7,
+    name: "Timex Men's Expedition Scout ",
+    img: "https://m.media-amazon.com/images/I/91WvnZ1g40L._AC_UY879_.jpg",
+    price: 10,
+    cat: "Sport",
+  }, 
+
+  {
+    id: 8,
+    name: "Timex Men's Expedition Scout ",
+    img: "https://m.media-amazon.com/images/I/91WvnZ1g40L._AC_UY879_.jpg",
+    price: 5,
+    cat: "Sport",
+  }, 
+
+
+
+
   {
     id: 3,
     name: "Breitling Superocean Heritage",
@@ -42,48 +62,79 @@ const data = [
     cat: "Casual",
   },
 ];
-
-
-
 const productList = document.getElementById("productList");
-const priceRange = document.querySelector(".priceRange");
-const priceValue = document.querySelector(".priceValue");
-const searchInput = document.getElementById("searchInput");
+      const priceRange = document.querySelector(".priceRange");
+      const priceValue = document.querySelector(".priceValue");
+      const searchInput = document.getElementById("searchInput");
+      let currentCategory = "All";
+      let currentSearchTerm = "";
 
-function renderProducts(products) {
-  productList.innerHTML = products.map(
-    (product) => `
-      <div class="product">
-        <img src="${product.img}" alt="${product.name}">
-        <span class="name">${product.name}</span>
-        <span class="priceText">$${product.price}</span>
-      </div>
-    `
-  ).join("");
-}
+      function renderProducts(products) {
+        productList.innerHTML = products
+          .map(
+            (product) => `
+              <div class="product">
+                <img src="${product.img}" alt="${product.name}">
+                <span class="name">${product.name}</span>
+                <span class="priceText">$${product.price}</span>
+              </div>
+            `
+          )
+          .join("");
+      }
 
-renderProducts(data);
+      renderProducts(data);
 
-searchInput.addEventListener("input", () => {
-  const searchTerm = searchInput.value.toLowerCase();
-  const filteredProducts = data.filter(
-    (product) =>
-      product.name.toLowerCase().includes(searchTerm)
-  );
-  renderProducts(filteredProducts);
-});
+      function updateProductList() {
+        const maxPrice = parseInt(priceRange.value);
+        const filteredProducts = data
+          .filter((product) =>
+            (currentCategory === "All" || product.cat === currentCategory) &&
+            (product.name.toLowerCase().includes(currentSearchTerm.toLowerCase())) &&
+            (product.price <= maxPrice)
+          );
 
+        renderProducts(filteredProducts);
+        priceValue.textContent = `$${maxPrice}`;
+      }
 
+      searchInput.addEventListener("input", () => {
+        currentSearchTerm = searchInput.value;
+        updateProductList();
+      });
 
-function filterProducts(category) {
-  const filteredProducts = category === "All" ? data : data.filter((product) => product.cat === category);
-  renderProducts(filteredProducts);
-}
+      function filterProducts(categoryElement, category) {
+        currentCategory = category;
+        updateProductList();
 
-priceRange.addEventListener("input", () => {
-  const maxPrice = parseInt(priceRange.value);
-  const filteredProducts = data.filter((product) => product.price <= maxPrice);
-  renderProducts(filteredProducts);
-  priceValue.textContent = `$${maxPrice}`;
-});
+        const categoryButtons = document.querySelectorAll('.cat');
+        categoryButtons.forEach(button => button.classList.remove('active'));
+        categoryElement.classList.add('active');
+      }
 
+      const categoryButtons = document.querySelectorAll('.cat');
+      categoryButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          filterProducts(this, this.dataset.category);
+        });
+      });
+
+      function updateFilteredProductsByPrice() {
+        const maxPrice = parseInt(priceRange.value);
+        const filteredProducts = data
+          .filter((product) =>
+            (currentCategory === "All" || product.cat === currentCategory) &&
+            (product.name.toLowerCase().includes(currentSearchTerm.toLowerCase())) &&
+            (product.price <= maxPrice)
+          );
+
+        renderProducts(filteredProducts);
+        priceValue.textContent = `$${maxPrice}`;
+      }
+
+      priceRange.addEventListener("input", () => {
+        updateFilteredProductsByPrice();
+      });
+
+      // Initial rendering of products
+      updateProductList();

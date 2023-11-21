@@ -17,6 +17,7 @@ body {
 }
 
 .leftMenu {
+  width: 100%;
   flex: 1;
 }
 
@@ -58,6 +59,11 @@ h1{
 }
 .cat:hover{
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cat.active {
+  color: black;
+  font-weight: bold;
 }
 .content {
   flex: 4;
